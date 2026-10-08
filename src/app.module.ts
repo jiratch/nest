@@ -10,6 +10,7 @@ import { mysqlConfig } from './config/mysql.config.js';
   imports: [UsersModule,
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: 'src/config/.env',
     }),
     TypeOrmModule.forRootAsync(mysqlConfig)
   ],

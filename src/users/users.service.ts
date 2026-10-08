@@ -4,6 +4,7 @@ import { NewUserDto } from './dto/new-user.dto.js';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './entities/user.entity.js';
 import { Repository } from 'typeorm';
+import { handleDuplicateEmailError } from './users.errors.js';
 
 @Injectable()
 export class UsersService {
@@ -13,9 +14,13 @@ export class UsersService {
   ) {}
 
 
-  create(userDto: UserDto) {
+  async create(userDto: UserDto) {
     const dto = this.userRepository.create(userDto);
-    return this.userRepository.save(dto);
+    try {
+      return await this.userRepository.save(dto);
+    } catch (error: unknown) {
+      handleDuplicateEmailError(error);
+    }
   }
 
   findAll() {
@@ -34,11 +39,16 @@ export class UsersService {
   async update(id: number, newUserDto: NewUserDto) {
     const user = await this.findOne(id);
     this.userRepository.merge(user, newUserDto);
-    return this.userRepository.save(user);
+    try {
+      return await this.userRepository.save(user);
+    } catch (error: unknown) {
+      handleDuplicateEmailError(error);
+    }
   }
 
   async remove(id: number) {
      const result = await this.userRepository.delete(id);
     if (!result.affected) throw new NotFoundException(`User ${id} not found`);
   }
+
 }

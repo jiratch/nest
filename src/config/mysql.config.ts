@@ -3,7 +3,7 @@ import { TypeOrmModuleOptions } from "@nestjs/typeorm";
 import { UserEntity } from "../users/entities/user.entity.js";
 
 export const mysqlConfig = {
-    import : [ConfigModule],
+    imports : [ConfigModule],
     inject : [ConfigService],
     useFactory : (configService: ConfigService): TypeOrmModuleOptions => ({
         type: 'mysql',
@@ -13,6 +13,6 @@ export const mysqlConfig = {
         password: configService.get<string>('DB_PASSWORD') || '',
         database: configService.get<string>('DB_NAME') || 'mydb',
         entities: [UserEntity],
-        synchronize: true,
+        synchronize: process.env.NODE_ENV !== 'production'
     }),
 };

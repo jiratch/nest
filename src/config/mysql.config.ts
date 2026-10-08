@@ -3,7 +3,7 @@ import { TypeOrmModuleOptions } from "@nestjs/typeorm";
 import { UserEntity } from "../users/entities/user.entity.js";
 
 export const mysqlConfig = {
-    import : [ConfigModule],
+    imports : [ConfigModule],
     inject : [ConfigService],
     useFactory : (configService: ConfigService): TypeOrmModuleOptions => ({
         type: 'mysql',

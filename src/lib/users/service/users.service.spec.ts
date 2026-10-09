@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { ConflictException } from '@nestjs/common';
-import { UserEntity } from './entities/user.entity.js';
+import { UserEntity } from '../entities/user.entity.js';
 import { UsersService } from './users.service.js';
 
 describe('UsersService', () => {

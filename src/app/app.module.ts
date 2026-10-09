@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
-import { UsersModule } from './users/users.module.js';
+import { UsersModule } from '../lib/users/users.module.js';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { mysqlConfig } from './config/mysql.config.js';
+import { mysqlConfig } from '../config/mysql.config.js';
 
 @Module({
   imports: [UsersModule,

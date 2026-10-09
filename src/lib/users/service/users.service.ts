@@ -1,16 +1,18 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { UserDto } from './dto/user.dto.js';
-import { NewUserDto } from './dto/new-user.dto.js';
+import { UserDto } from '../dto/user.dto.js';
+import { NewUserDto } from '../dto/new-user.dto.js';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserEntity } from './entities/user.entity.js';
+import { UserEntity } from '../entities/user.entity.js';
 import { Repository } from 'typeorm';
-import { handleDuplicateEmailError } from './users.errors.js';
+import { handleDuplicateEmailError } from '../response/users.errors.js';
+import { UsersMapper } from '../mapper/users_mapper.js';
 
 @Injectable()
 export class UsersService {
 
   constructor(
-    @InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>
+    @InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>,
+    private readonly userMapper: UsersMapper
   ) {}
 
 

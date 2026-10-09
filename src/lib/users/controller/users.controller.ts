@@ -5,7 +5,7 @@ import { NewUserDto } from '../dto/new-user.dto.js';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly usersService: UsersService) { }
 
   @Post()
   create(@Body() userDto: UserDto) {
@@ -19,7 +19,7 @@ export class UsersController {
 
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.usersService.findOne(id);
+    return this.usersService.findOneById(id);
   }
 
   @Patch(':id')

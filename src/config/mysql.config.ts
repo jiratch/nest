@@ -1,6 +1,6 @@
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModuleOptions } from "@nestjs/typeorm";
-import { UserEntity } from "../users/entities/user.entity.js";
+import { UserEntity } from "../lib/users/entities/user.entity.js";
 
 export const mysqlConfig = {
     imports : [ConfigModule],

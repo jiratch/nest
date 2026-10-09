@@ -1,9 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { ConflictException } from '@nestjs/common';
-import { UserEntity } from '../entities/user.entity.js';
-import { UsersMapper } from '../mapper/users_mapper.js';
-import { UsersService } from './users.service.js';
+import { UserEntity } from '../entities/user.entity.js';import { UsersService } from './users.service.js';
 
 describe('UsersService', () => {
   let service: UsersService;
@@ -26,7 +24,6 @@ describe('UsersService', () => {
       providers: [
         UsersService,
         { provide: getRepositoryToken(UserEntity), useValue: repository },
-        { provide: UsersMapper, useValue: {} },
       ],
     }).compile();
 

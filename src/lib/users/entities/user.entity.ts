@@ -8,6 +8,12 @@ export class UserEntity {
     @Column()
     name: string;
 
+    @Column()
+    age: number;
+
+    @Column()
+    address: string;
+
     @Column({unique: true})
     email: string;
 

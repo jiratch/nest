@@ -23,7 +23,10 @@ export class UsersService {
   }
 
   findAll() {
-    return this.userRepository.find();
+    return this.userRepository.find(
+      {skip : 1,
+      take : 2}
+    );
   }
 
   async findOneById(id: number) {
